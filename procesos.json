@@ -1,0 +1,1 @@
+[{"id":1,"nombre":"Proceso1","tipo":"I/O Bound","instrucciones":100,"ciclosParaExcepcion":10,"ciclosParaSatisfacerExcepcion":5,"prioridad":1,"pc":1,"mar":0,"estado":"Listo"}]

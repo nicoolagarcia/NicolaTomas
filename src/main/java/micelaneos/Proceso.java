@@ -5,6 +5,9 @@
  */
 package micelaneos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author tomas
@@ -15,24 +18,32 @@ public class Proceso {
     private int id;
     private String nombre;
     private int instrucciones;
-    private boolean cpuBound;
+    private String tipo;
     private int ciclosParaExcepcion;
     private int ciclosParaSatisfacerExcepcion;
     private int pc; // Program Counter
     private int mar; // Program Counter
     private int prioridad;
     private String estado;
-
-    public Proceso(int id, String nombre, int instrucciones, boolean cpuBound, int ciclosParaExcepcion, int ciclosParaSatisfacerExcepcion, int prioridad) {
+    
+//    
+    public Proceso(){
+    }
+    
+    @JsonCreator
+    public Proceso(@JsonProperty("id") int id, @JsonProperty("nombre") String nombre, @JsonProperty("tipo") String tipo, @JsonProperty("instrucciones") int instrucciones,
+                   @JsonProperty("ciclosParaExcepcion") int ciclosParaExcepcion,
+                   @JsonProperty("ciclosParaSatisfacerExcepcion") int ciclosParaSatisfacerExcepcion, @JsonProperty("prioridad") int prioridad) {
         this.id = id;
         this.nombre = nombre;
         this.instrucciones = instrucciones;
-        this.pc = 1; // Inicializar el Program Counter en 1
-        this.mar = 0;
-        this.estado = "Listo";
         this.ciclosParaExcepcion = ciclosParaExcepcion;
         this.ciclosParaSatisfacerExcepcion = ciclosParaSatisfacerExcepcion;
-        this.prioridad = 0;
+        this.prioridad = prioridad;
+        this.pc = 1; // Initialize Program Counter to 1
+        this.mar = 0;
+        this.estado = "Listo";
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -46,16 +57,52 @@ public class Proceso {
     public int getInstrucciones() {
         return instrucciones;
     }
-
-    public boolean isCpuBound() {
-        return cpuBound;
-    }
-
+    
     public int getCiclosParaExcepcion() {
         return ciclosParaExcepcion;
     }
 
     public int getCiclosParaSatisfacerExcepcion() {
         return ciclosParaSatisfacerExcepcion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getPc() {
+        return pc;
+    }
+
+    public void setPc(int pc) {
+        this.pc = pc;
+    }
+
+    public int getMar() {
+        return mar;
+    }
+
+    public void setMar(int mar) {
+        this.mar = mar;
+    }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
