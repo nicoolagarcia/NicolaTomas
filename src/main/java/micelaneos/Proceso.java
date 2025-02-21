@@ -25,7 +25,7 @@ public class Proceso {
     private int mar; // Program Counter
     private int prioridad;
     private String estado;
-    
+    private int tiempoEspera;
 //    
     public Proceso(){
     }
@@ -44,14 +44,43 @@ public class Proceso {
         this.mar = 0;
         this.estado = "Listo";
         this.tipo = tipo;
+        this.tiempoEspera = 0;
     }
 
+    public int getTiempoEspera() {
+        return tiempoEspera;
+    }
+
+    public void setTiempoEspera(int tiempoEspera) {
+        this.tiempoEspera = tiempoEspera;
+    }
+    
     public int getId() {
         return id;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setInstrucciones(int instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    public void setCiclosParaExcepcion(int ciclosParaExcepcion) {
+        this.ciclosParaExcepcion = ciclosParaExcepcion;
+    }
+
+    public void setCiclosParaSatisfacerExcepcion(int ciclosParaSatisfacerExcepcion) {
+        this.ciclosParaSatisfacerExcepcion = ciclosParaSatisfacerExcepcion;
     }
 
     public int getInstrucciones() {

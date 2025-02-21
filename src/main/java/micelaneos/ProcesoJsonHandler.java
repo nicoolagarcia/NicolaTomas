@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import micelaneos.List;
 import micelaneos.Proceso;
-
+import java.io.IOException;
 
 public class ProcesoJsonHandler {
 
@@ -23,36 +23,49 @@ public class ProcesoJsonHandler {
     }
 
     // Read a List of Proceso objects from a JSON file
-    public static List<Proceso> readProcesosFromJson(String filePath) throws IOException {
-        Proceso[] procesosArray = objectMapper.readValue(new File(filePath), Proceso[].class);
-        List<Proceso> procesos = new List<>();
-        for (Proceso proceso : procesosArray) {
-            procesos.appendLast(proceso);
+    public static List<Proceso> readProcesosFromJson(String filePath){
+        List procesos = new List();
+        try{
+            Proceso[] procesosArray = objectMapper.readValue(new File(filePath), Proceso[].class);
+            procesos = new List<>();
+            for (Proceso proceso : procesosArray) {
+                procesos.appendLast(proceso);
+            }
+            
+        }catch(Exception e){
+            System.out.println("error cargar procesos");
         }
         return procesos;
     }
-
-    public static void main(String[] args) {
-        // Example usage
-        Proceso proceso = new Proceso(1, "Proceso1", "I/O Bound", 100 , 10, 5, 1);
-        List<Proceso> procesos = new List<>();
-        procesos.appendLast(proceso);
-
-        String filePath = "procesos.json";
-
+    public static void saveToJson(int[] numberArray, String filePath) {
         try {
-            // Write Proceso objects to JSON file
-            writeProcesosToJson(procesos, filePath);
-
-            // Read Proceso objects from JSON file
-            List<Proceso> readProcesos = readProcesosFromJson(filePath);
-
-            // Print read Proceso objects
-            for (int i = 0; i < readProcesos.getSize(); i++) {
-                System.out.println(((Proceso) readProcesos.getNodoById(i).getValue()).getNombre());
-            }
+            objectMapper.writeValue(new File(filePath), numberArray);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static int[] readFromJson(String filePath) {
+        try {
+            return objectMapper.readValue(new File(filePath), int[].class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {5, 10};
+        String filePath = "numbers.json";
+
+        // Save to JSON
+        ProcesoJsonHandler.saveToJson(numbers, filePath);
+
+        // Read from JSON
+        int[] readNumberArray = ProcesoJsonHandler.readFromJson(filePath);
+        if (readNumberArray != null) {
+            System.out.println(readNumberArray[0]);
+            System.out.println(readNumberArray[1]);
         }
     }
 }
