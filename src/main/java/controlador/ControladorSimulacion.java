@@ -24,6 +24,14 @@ public class ControladorSimulacion {
         }
     }
 
+    public VistaSimulacion getVista() {
+        return vista;
+    }
+
+    public void setVista(VistaSimulacion vista) {
+        this.vista = vista;
+    }
+    
     public void setListosText(String text) {
         vista.setListos(text);
     }

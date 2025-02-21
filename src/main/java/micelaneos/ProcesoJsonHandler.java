@@ -8,7 +8,7 @@ import micelaneos.Proceso;
 import java.io.IOException;
 
 public class ProcesoJsonHandler {
-
+    
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     // Write a List of Proceso objects to a JSON file
@@ -37,6 +37,7 @@ public class ProcesoJsonHandler {
         }
         return procesos;
     }
+    
     public static void saveToJson(int[] numberArray, String filePath) {
         try {
             objectMapper.writeValue(new File(filePath), numberArray);

@@ -1,4 +1,7 @@
 package operativos.nicolatomas;
+import modelos.CPU;
+import modelos.Planificador;
+import modelos.Reloj;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -6,7 +9,6 @@ import java.util.logging.Logger;
 import micelaneos.*;
 import vistas.*;
 import controlador.*;
-import modelo.*;
 
 public class NicolaTomas {
 

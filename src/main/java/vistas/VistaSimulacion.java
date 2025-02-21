@@ -21,9 +21,9 @@ import java.awt.Dimension;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import micelaneos.*;
-import modelo.CPU;
-import modelo.Planificador;
-import modelo.Reloj;
+import modelos.CPU;
+import modelos.Planificador;
+import modelos.Reloj;
 /**
  *
  * @author tomas
